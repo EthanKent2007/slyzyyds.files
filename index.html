@@ -1,1 +1,233 @@
-slyzyyds
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="slyz.png" type="image/x-icon">
+    <title>胜利一中永远滴神</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 90vh;
+            margin-top: 20px;
+            color: #e0e0e0; 
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background-color: #222;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+        }
+
+        footer {
+            position: fixed;
+            width: 100%;
+            background-color: #222;
+            color: white;
+            text-align: center;
+            font-size: 15px;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+        }
+
+        header a,
+        footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease; 
+        }
+
+        header a:hover,
+        footer a:hover {
+            color: #ccc;
+        }
+
+        /* 顶部文字 */
+        .top-text {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            color: #ccc;
+            text-align: center;
+            font-size: 20px;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            background-color: rgba(34, 34, 34, 0.8); 
+            backdrop-filter: blur(2px); 
+        }
+
+        /* 文件夹容器 */
+        .folder-container {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            gap: 15px;
+            margin-top: 120px;
+        }
+
+        /* 文件夹 */
+        .folder {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* 背景颜色过渡效果 */
+        }
+
+        .folder:hover {
+            background-color: #333;
+        }
+
+        /* 文件夹标题 */
+        .folder-title {
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        /* 文件夹副标题 */
+        .folder-subtitle {
+            font-weight: normal;
+            font-size: 12px;
+            color: #aaa;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        /* 文件夹内容 */
+        .folder-content {
+            display: none;
+            margin-top: 5px;
+        }
+
+        /* 文件链接 */
+        .file {
+            padding: 8px;
+            background-color: #333;
+            border: 1px solid #555;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            color: #e0e0e0;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease; 
+        }
+
+        .file:hover {
+            background-color: #444;
+        }
+
+        /* 页脚固定在底部 */
+        footer {
+            bottom: 0;
+            margin-bottom: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 
+    <header>
+        <a href="https://space.bilibili.com/1179167087">@胜利一中永远滴神(点击进入个人主页)</a>
+    </header>
+ -->
+
+    <!-- 
+    <p style="color: red; font-size: 20px; font-weight: bold;">仅供胜利一中内部师生交流学习使用<br>请在下载后24小时内删除！</p>
+ -->
+
+    <div class="top-text">
+        仅供胜利一中内部师生交流学习使用<br>
+        请在下载后24小时内删除！<br>
+        <b>点击链接即可下载查看</b><br>
+    </div>
+
+    <div class="folder-container">
+
+        <!-- 高中电子教材(2024) -->
+        <div class="folder" id="folder1">
+            <div class="folder-title">
+                <span>高中电子教材(2024)</span>
+                <span>&#9660;</span>
+            </div>
+                <span class="folder-subtitle">2025/02/05 更新</span>
+            <div class="folder-content">
+                <a href="https://easylink.cc/pdcqxr" class="file" target="_blank">简单云链下载</a>
+                <a href="https://url84.ctfile.com/d/63120184-64937671-ed2e89?p=slyz" class="file" target="_blank">城通网盘下载 (密码: slyz)</a>
+                <a href="https://pan.baidu.com/s/1D67KAVjk8rjb2afc0IWndQ?pwd=ffq5" class="file" target="_blank">百度网盘下载 (密码: ffq5)</a>
+            </div>
+        </div>
+
+        <!-- 公文字体 -->
+        <div class="folder" id="folder2">
+            <div class="folder-title">
+                <span>公文字体</span>
+                <span>&#9660;</span>
+            </div>
+                <span class="folder-subtitle">2025/02/05 更新</span>
+            <div class="folder-content">
+                <a href="https://easylink.cc/qkc0zl" class="file" target="_blank">简单云链下载</a>
+                <a href="https://url84.ctfile.com/d/63120184-64939300-c362bd?p=slyz" class="file" target="_blank">城通网盘下载 (密码: slyz)</a>
+                <a href="https://pan.baidu.com/s/163f6ERBmU52bBGji9ftfyA?pwd=gcif" class="file" target="_blank">百度网盘下载 (密码: gcif)</a>
+            </div>
+        </div>
+
+        <!-- 模板 -->
+        <!--
+        <div class="folder" id="folder3">
+            <div class="folder-title">
+                <span>标题</span>
+                <span>&#9660;</span>
+            </div>
+                <span class="folder-subtitle">副标题</span>
+            <div class="folder-content">
+                文件内容
+            </div>
+        </div>
+ -->
+
+    </div>
+
+    <footer>
+        Copyright &copy; 2023-2025 KentStudio. All rights reserved.
+    </footer>
+
+    <script>
+
+        const folders = document.querySelectorAll('.folder');
+
+        folders.forEach(folder => {
+            folder.addEventListener('click', () => {
+
+                const content = folder.querySelector('.folder-content');
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+
+                const arrow = folder.querySelector('.folder-title span:last-child');
+                arrow.textContent = arrow.textContent === '▼' ? '▶' : '▼';
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
