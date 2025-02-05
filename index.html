@@ -9,27 +9,40 @@
 
     <style>
 
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
         body {
             font-family: Arial, sans-serif;
+            background-image: url('bg.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             background-color: #121212;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            min-height: 90vh;
+            overflow-y: auto;
+            min-height: 200vh;
             margin-top: 20px;
-            color: #e0e0e0; 
+            color: #e0e0e0;
         }
 
         header {
             position: fixed;
             width: 100%;
-            background-color: #222;
             color: white;
             text-align: center;
             font-size: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            top: 0;
+            color: #ccc;
+            text-align: center;
             padding: 20px 0;
             margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+            background-color: rgba(34, 34, 34, 0.8);
+            backdrop-filter: blur(2px);
         }
 
         footer {
@@ -40,15 +53,17 @@
             text-align: center;
             font-size: 15px;
             padding: 20px 0;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+            background-color: rgba(34, 34, 34, 0.8);
+            backdrop-filter: blur(2px);
+            bottom: 0;
+            margin-bottom: 0;
         }
 
         header a,
         footer a {
             color: white;
             text-decoration: none;
-            transition: color 0.3s ease; 
+            transition: color 0.3s ease;
         }
 
         header a:hover,
@@ -56,7 +71,6 @@
             color: #ccc;
         }
 
-        /* 顶部文字 */
         .top-text {
             position: fixed;
             top: 0;
@@ -66,11 +80,10 @@
             font-size: 20px;
             padding: 20px 0;
             margin-bottom: 30px;
-            background-color: rgba(34, 34, 34, 0.8); 
-            backdrop-filter: blur(2px); 
+            background-color: rgba(34, 34, 34, 0.8);
+            backdrop-filter: blur(2px);
         }
 
-        /* 文件夹容器 */
         .folder-container {
             display: flex;
             flex-direction: column;
@@ -79,21 +92,20 @@
             margin-top: 120px;
         }
 
-        /* 文件夹 */
         .folder {
             background-color: #2a2a2a;
             border: 1px solid #444;
             border-radius: 8px;
             padding: 20px;
             cursor: pointer;
-            transition: background-color 0.3s ease; /* 背景颜色过渡效果 */
+            transition: background-color 0.3s ease;
+            overflow: hidden;
         }
 
         .folder:hover {
             background-color: #333;
         }
 
-        /* 文件夹标题 */
         .folder-title {
             font-weight: bold;
             display: flex;
@@ -101,7 +113,6 @@
             align-items: flex-start;
         }
 
-        /* 文件夹副标题 */
         .folder-subtitle {
             font-weight: normal;
             font-size: 12px;
@@ -110,13 +121,13 @@
             align-items: flex-start;
         }
 
-        /* 文件夹内容 */
         .folder-content {
-            display: none;
             margin-top: 5px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
         }
 
-        /* 文件链接 */
         .file {
             padding: 8px;
             background-color: #333;
@@ -127,38 +138,96 @@
             color: #e0e0e0;
             text-decoration: none;
             display: block;
-            transition: background-color 0.3s ease; 
+            transition: background-color 0.3s ease;
         }
 
         .file:hover {
             background-color: #444;
         }
 
-        /* 页脚固定在底部 */
-        footer {
-            bottom: 0;
-            margin-bottom: 0;
+        .button-container {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
+
+        .button {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 50px;
+            padding: 10px 20px;
+            color: #e0e0e0;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button,
+        a {
+            font-size: 15px;
+        }
+
+        .button:hover {
+            background-color: #333;
+        }
+
+        .folder-title span:last-child {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .rotate {
+            transform: rotate(-90deg);
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-text {
+            font-size: 50px;
+        }
+
+
+        .non-pc-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            color: white;
+            font-size: 20px;
+        }
+
     </style>
 
 </head>
 
 <body>
 
-    <!-- 
-    <header>
-        <a href="https://space.bilibili.com/1179167087">@胜利一中永远滴神(点击进入个人主页)</a>
-    </header>
- -->
-
-    <!-- 
-    <p style="color: red; font-size: 20px; font-weight: bold;">仅供胜利一中内部师生交流学习使用<br>请在下载后24小时内删除！</p>
- -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-text">loading...</div>
+    </div>
 
     <div class="top-text">
-        仅供胜利一中内部师生交流学习使用<br>
-        请在下载后24小时内删除！<br>
-        <b>点击链接即可下载查看</b><br>
+        仅供胜利一中师生内部交流学习使用<br>请在下载后24小时内删除！<br><b>点击链接即可下载查看</b>
     </div>
 
     <div class="folder-container">
@@ -169,11 +238,11 @@
                 <span>高中电子教材(2024)</span>
                 <span>&#9660;</span>
             </div>
-                <span class="folder-subtitle">2025/02/05 更新</span>
+            <span class="folder-subtitle">2025/02/05 更新</span>
             <div class="folder-content">
-                <a href="https://easylink.cc/pdcqxr" class="file" target="_blank">简单云链下载</a>
-                <a href="https://url84.ctfile.com/d/63120184-64937671-ed2e89?p=slyz" class="file" target="_blank">城通网盘下载 (密码: slyz)</a>
-                <a href="https://pan.baidu.com/s/1D67KAVjk8rjb2afc0IWndQ?pwd=ffq5" class="file" target="_blank">百度网盘下载 (密码: ffq5)</a>
+                <a href="https://easylink.cc/pdcqxr" class="file" target="_blank" onclick="event.stopPropagation()">简单云链下载</a>
+                <a href="https://url84.ctfile.com/d/63120184-64937671-ed2e89?p=slyz" class="file" target="_blank" onclick="event.stopPropagation()">城通网盘下载 - 密码: slyz</a>
+                <a href="https://pan.baidu.com/s/1D67KAVjk8rjb2afc0IWndQ?pwd=ffq5" class="file" target="_blank" onclick="event.stopPropagation()">百度网盘下载- 密码: ffq5</a>
             </div>
         </div>
 
@@ -183,27 +252,13 @@
                 <span>公文字体</span>
                 <span>&#9660;</span>
             </div>
-                <span class="folder-subtitle">2025/02/05 更新</span>
+            <span class="folder-subtitle">2025/02/05 更新</span>
             <div class="folder-content">
-                <a href="https://easylink.cc/qkc0zl" class="file" target="_blank">简单云链下载</a>
-                <a href="https://url84.ctfile.com/d/63120184-64939300-c362bd?p=slyz" class="file" target="_blank">城通网盘下载 (密码: slyz)</a>
-                <a href="https://pan.baidu.com/s/163f6ERBmU52bBGji9ftfyA?pwd=gcif" class="file" target="_blank">百度网盘下载 (密码: gcif)</a>
+                <a href="https://easylink.cc/qkc0zl" class="file" target="_blank" onclick="event.stopPropagation()">简单云链下载</a>
+                <a href="https://url84.ctfile.com/d/63120184-64939300-c362bd?p=slyz" class="file" target="_blank" onclick="event.stopPropagation()">城通网盘下载 - 密码: slyz</a>
+                <a href="https://pan.baidu.com/s/163f6ERBmU52bBGji9ftfyA?pwd=gcif" class="file" target="_blank" onclick="event.stopPropagation()">百度网盘下载 - 密码: gcif</a>
             </div>
         </div>
-
-        <!-- 模板 -->
-        <!--
-        <div class="folder" id="folder3">
-            <div class="folder-title">
-                <span>标题</span>
-                <span>&#9660;</span>
-            </div>
-                <span class="folder-subtitle">副标题</span>
-            <div class="folder-content">
-                文件内容
-            </div>
-        </div>
- -->
 
     </div>
 
@@ -213,17 +268,150 @@
 
     <script>
 
+        window.addEventListener('DOMContentLoaded', () => {
+            const folders = document.querySelectorAll('.folder');
+            folders.forEach(folder => {
+                const content = folder.querySelector('.folder-content');
+                content.style.maxHeight = '0px';
+            });
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
         const folders = document.querySelectorAll('.folder');
 
         folders.forEach(folder => {
             folder.addEventListener('click', () => {
+                folders.forEach(otherFolder => {
+                    if (otherFolder !== folder) {
+                        const otherContent = otherFolder.querySelector('.folder-content');
+                        otherContent.style.maxHeight = '0px';
+                        const otherArrow = otherFolder.querySelector('.folder-title span:last-child');
+                        otherArrow.classList.remove('rotate');
+                    }
+                });
 
                 const content = folder.querySelector('.folder-content');
-                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                const isOpen = content.style.maxHeight !== '0px';
+
+                if (isOpen) {
+                    content.style.maxHeight = '0px';
+                } else {
+                    content.style.maxHeight = '300px';
+                    const contentHeight = content.scrollHeight;
+                    content.style.maxHeight = `${contentHeight}px`;
+                }
 
                 const arrow = folder.querySelector('.folder-title span:last-child');
-                arrow.textContent = arrow.textContent === '▼' ? '▶' : '▼';
+                arrow.classList.toggle('rotate');
             });
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function shareSite() {
+            const url = 'https://ethankent2007.github.io/slyzyyds.files/';
+            navigator.clipboard.writeText(url).then(() => {
+                alert('已复制到剪切板！快去分享吧~');
+            }).catch(err => {
+                console.error('复制失败:', err);
+            });
+        }
+
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('button-container');
+
+        const backToTopButton = document.createElement('button');
+        backToTopButton.classList.add('button');
+        backToTopButton.textContent = '回到顶部';
+        backToTopButton.addEventListener('click', scrollToTop);
+
+        const shareButton = document.createElement('button');
+        shareButton.classList.add('button');
+        shareButton.textContent = '分享本站';
+        shareButton.addEventListener('click', shareSite);
+
+        const supportButton = document.createElement('a');
+        supportButton.classList.add('button');
+        supportButton.textContent = '支持作者';
+        supportButton.href = 'https://space.bilibili.com/1179167087';
+        supportButton.target = '_blank';
+
+        buttonContainer.appendChild(backToTopButton);
+        buttonContainer.appendChild(shareButton);
+        buttonContainer.appendChild(supportButton);
+
+        document.body.appendChild(buttonContainer);
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'F12' || (e.ctrlKey && (e.key === 's' || e.key === 'p' || e.shiftKey && (e.key === 'I' || e.key === 'C') || (e.key === 'u' || e.key === 'U')))) {
+                e.preventDefault();
+                window.location.href = 'error.html';
+            }
+        });
+
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        function checkDevTools() {
+            const hasDevToolsOpen = window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160;
+            if (hasDevToolsOpen) {
+                window.location.href = 'error.html';
+            };
+            console.log('%c', devtools);
+        };
+        setInterval(checkDevTools, 0.01);
+
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+
+        (function identifyDevicePlatform() {
+            var os = function () {
+                var ua = navigator.userAgent,
+                    isWindowsPhone = /(?:Windows Phone)/.test(ua),
+                    isSymbian = /(?:SymbianOS)/.test(ua) || isWindowsPhone,
+                    isAndroid = /(?:Android)/.test(ua),
+                    isFireFox = /(?:Firefox)/.test(ua),
+                    isChrome = /(?:Chrome|CriOS)/.test(ua),
+                    isTablet = /(?:iPad|PlayBook)/.test(ua) || (isAndroid && !/(?:Mobile)/.test(ua)) ||
+                        (isFireFox && /(?:Tablet)/.test(ua)),
+                    isPhone = /(?:iPhone)/.test(ua) && !isTablet,
+                    isPc = !isPhone && !isAndroid && !isSymbian;
+                return {
+                    isTablet: isTablet,
+                    isPhone: isPhone,
+                    isAndroid: isAndroid,
+                    isPc: isPc
+                };
+            }();
+            console.log('os', os)
+            if (!os.isPc) {
+                const nonPcOverlay = document.createElement('div');
+                nonPcOverlay.className = 'non-pc-overlay';
+                nonPcOverlay.textContent = '请使用电脑浏览器访问本站！';
+                document.body.innerHTML = '';
+                document.body.appendChild(nonPcOverlay);
+                return;
+            }
+        })();
+
+        window.addEventListener('load', function () {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.display = 'flex';
+            setTimeout(function () {
+                loadingOverlay.style.display = 'none';
+            }, 1000);
         });
 
     </script>
