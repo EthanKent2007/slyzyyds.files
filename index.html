@@ -220,6 +220,23 @@
             color: white;
             font-size: 20px;
         }
+
+        .share-tip {
+            position: fixed;
+            bottom: 136px;
+            right: 130px;
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: #e0e0e0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 999;
+        }
+
+        .share-tip.show {
+            opacity: 1;
+        }
+
     </style>
 
 </head>
@@ -346,11 +363,23 @@
         }
 
         function shareSite() {
-            const url = 'https://ethankent2007.github.io/slyzyyds.files/';
+            const url = '来自“胜利一中永远滴神”的文件分享：https://ethankent2007.github.io/slyzyyds.files/，复制链接到电脑浏览器即可下载~';
             navigator.clipboard.writeText(url).then(() => {
-                alert('已复制到剪切板！快去分享吧~');
+                const shareTip = document.createElement('div');
+                shareTip.classList.add('share-tip');
+                shareTip.textContent = '已复制链接！快去分享吧~';
+                document.body.appendChild(shareTip);
+                setTimeout(() => {
+                    shareTip.classList.add('show');
+                }, 10);
+                setTimeout(() => {
+                    shareTip.classList.remove('show');
+                    setTimeout(() => {
+                        document.body.removeChild(shareTip);
+                    }, 300);
+                }, 2000);
             }).catch(err => {
-                console.error('复制失败:', err);
+                console.error('分享失败,', err);
             });
         }
 
