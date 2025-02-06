@@ -392,7 +392,47 @@
 
         function checkDevTools() {
             const hasDevToolsOpen = window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160;
+            if (hasDevToolsOpen) {
+                window.location.href = 'error.html';
+            };
         }
+        setInterval(checkDevTools, 1000);
+
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        (function identifyDevicePlatform() {
+            var os = function () {
+                var ua = navigator.userAgent,
+                    isWindowsPhone = /(?:Windows Phone)/.test(ua),
+                    isSymbian = /(?:SymbianOS)/.test(ua) || isWindowsPhone,
+                    isAndroid = /(?:Android)/.test(ua),
+                    isFireFox = /(?:Firefox)/.test(ua),
+                    isChrome = /(?:Chrome|CriOS)/.test(ua),
+                    isTablet = /(?:iPad|PlayBook)/.test(ua) || (isAndroid && !/(?:Mobile)/.test(ua)) ||
+                        (isFireFox && /(?:Tablet)/.test(ua)),
+                    isPhone = /(?:iPhone)/.test(ua) && !isTablet,
+                    isPc = !isPhone && !isAndroid && !isSymbian;
+                return {
+                    isTablet: isTablet,
+                    isPhone: isPhone,
+                    isAndroid: isAndroid,
+                    isPc: isPc
+                };
+            }();
+            console.log('os', os)
+            if (!os.isPc) {
+                const nonPcOverlay = document.createElement('div');
+                nonPcOverlay.className = 'non-pc-overlay';
+                nonPcOverlay.textContent = '请使用电脑浏览器访问本站';
+                document.body.innerHTML = '';
+                document.body.appendChild(nonPcOverlay);
+                return;
+            }
+        })();
+
+
     </script>
 
 </body>
