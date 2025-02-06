@@ -193,7 +193,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.2s ease;
             opacity: 1;
         }
 
@@ -305,8 +305,8 @@
                 loadingOverlay.classList.add('hidden');
                 setTimeout(() => {
                     loadingOverlay.style.display = 'none';
-                }, 300);
-            }, 1000);
+                }, 200);
+            }, 1200);
         });
 
         const folders = document.querySelectorAll('.folder');
