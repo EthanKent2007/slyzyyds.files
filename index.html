@@ -14,6 +14,10 @@
         }
 
         body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
             font-family: Arial, sans-serif;
             background-image: url('bg.png');
             background-size: cover;
@@ -42,7 +46,7 @@
             padding: 20px 0;
             margin-bottom: 30px;
             background-color: rgba(34, 34, 34, 0.8);
-            backdrop-filter: blur(2px);
+            backdrop-filter: blur(1.5px);
         }
 
         footer {
@@ -54,7 +58,7 @@
             font-size: 15px;
             padding: 20px 0;
             background-color: rgba(34, 34, 34, 0.8);
-            backdrop-filter: blur(2px);
+            backdrop-filter: blur(1.5px);
             bottom: 0;
             margin-bottom: 0;
         }
@@ -81,7 +85,7 @@
             padding: 20px 0;
             margin-bottom: 30px;
             background-color: rgba(34, 34, 34, 0.8);
-            backdrop-filter: blur(2px);
+            backdrop-filter: blur(1.5px);
         }
 
         .folder-container {
@@ -133,8 +137,8 @@
             background-color: #333;
             border: 1px solid #555;
             border-radius: 5px;
-            margin-top: 20px;
-            margin-bottom: 5px;
+            margin-top: 10px;
+            margin-bottom: 0px;
             color: #e0e0e0;
             text-decoration: none;
             display: block;
@@ -367,14 +371,12 @@
             if (hasDevToolsOpen) {
                 window.location.href = 'error.html';
             };
-            console.log('%c', devtools);
-        };
-        setInterval(checkDevTools, 0.01);
+        }
+        setInterval(checkDevTools, 1000);
 
         document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
         });
-
 
         (function identifyDevicePlatform() {
             var os = function () {
